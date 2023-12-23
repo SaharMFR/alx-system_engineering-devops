@@ -1,5 +1,5 @@
 #!/usr/bin/pup
-# Installing (2.1.0) version of flask
+# Installing version (2.1.0) of flask
 package {'flask':
   ensure   => '2.1.0',
   provider => 'pip3'
