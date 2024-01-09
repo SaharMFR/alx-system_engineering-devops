@@ -1,23 +1,35 @@
 #!/usr/bin/env bash
 # Configuring load balancer HAproxy so that it send traffic to `web-01` and `web-02` that distributes requests using a roundrobin algorithm.
 
+
 lb="\
 frontend my_proxy
 	bind *:80
 	mode http
 	default_backend my_web
-
+    
 backend my_web
 	balance roundrobin
 	server 294054-web-01 35.175.129.78:80 check
 	server 294054-web-02 100.25.45.229:80 check
 "
 
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.9
+apt-get -y update
+apt-get -y upgrade
 
-apt-get install -y haproxy=2.9.\*
+apt-get -y install --no-install-recommends software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.9
+apt-get -y update
+
+apt-get -y install haproxy=2.9.\*
+
+cp -a /etc/haproxy/haproxy.cfg{,.orig}
 
 echo "$lb" >> /etc/haproxy/haproxy.cfg
 
-service haproxy restart
+if command -v systemctl &> /dev/null;
+then
+    systemctl restart haproxy
+else
+    service haproxy restart
+fi
