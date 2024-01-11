@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# The same as the previous task but short and sweet and `service` (init) must say that `nginx` is not running ← for real
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
+pkill -o nginx
