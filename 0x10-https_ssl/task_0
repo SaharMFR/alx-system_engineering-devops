@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# DNS server and zone details
+DNS_SERVER=
+ZONE_NAME=saharmf.tech
+KEY_FILE=root/alx-system_engineering-devops/0x10-https_ssl/test
+
+# Load Balancer and Web Server IPs
+LB_IP=34.232.53.49
+WEB01_IP=35.175.129.78
+WEB02_IP=100.25.45.229
+
+# Create a DNS update script
+echo "server $DNS_SERVER" > update_dns.sh
+echo "zone $ZONE_NAME" >> update_dns.sh
+
+# Add subdomains and their corresponding IPs
+echo "update add www.$ZONE_NAME 3600 A $LB_IP" >> update_dns.sh
+echo "update add lb-01.$ZONE_NAME 3600 A $LB_IP" >> update_dns.sh
+echo "update add web-01.$ZONE_NAME 3600 A $WEB01_IP" >> update_dns.sh
+echo "update add web-02.$ZONE_NAME 3600 A $WEB02_IP" >> update_dns.sh
+
+echo "send" >> update_dns.sh
+
+# Execute the DNS update script using nsupdate
+nsupdate -k $KEY_FILE -v update_dns.sh
+
+# Clean up temporary script
+rm update_dns.sh
+
