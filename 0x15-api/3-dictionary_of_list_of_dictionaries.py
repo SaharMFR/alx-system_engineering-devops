@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Extends task-0 to export data in the JSON format """
+import json
 import requests
 import sys
-import json
 
 
 if __name__ == "__main__":
