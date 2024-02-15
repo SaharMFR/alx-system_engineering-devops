@@ -11,8 +11,16 @@ def number_of_subscribers(subreddit):
     If an invalid subreddit is given, the function should return 0.
     """
 
-    if subreddit is None or type(subreddit) is not str:
+    if subreddit is None or not isinstance(subreddit, str):
         return 0
-    response = requests.get('http://www.reddit.com/r/{}/about.json'.format(
-        subreddit), headers={'User-Agent': 'My-User-Agent'}).json()
-    return response.get("data", {}).get("subscribers", 0)
+
+    h = {"User-agent": "My-User-Agent"}
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    response = requests.get(url, headers=h)
+    res = response.json()
+
+    try:
+        return res.get("data").get("subscribers")
+
+    except Exception:
+        return 0
