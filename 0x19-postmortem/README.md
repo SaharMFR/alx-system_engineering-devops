@@ -58,3 +58,6 @@ In the midst of the banking breakdown, we briefly entertained the idea of introd
 ### Conclusion :
 
 The Database Disconnect Debacle highlighted the importance of meticulous testing, even in simple projects. By implementing the suggested improvements and tasks, we aim to prevent future disruptions and ensure smooth project development experiences. Keep coding, keep testing!
+
+
+<img width="583" alt="Screenshot 2024-03-09 at 12 22 01 PM" src="https://github.com/SaharMFR/alx-system_engineering-devops/assets/100488384/8ac44fdc-6f69-42ad-8470-9ef4fa8e1083">
