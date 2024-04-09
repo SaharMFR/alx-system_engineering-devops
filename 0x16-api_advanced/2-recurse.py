@@ -14,13 +14,13 @@ def recurse(subreddit, hot_list=[], after=""):
 
     if after is None:
         return hot_list
-    
+
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     h = {"User-Agent": "My-User-Agent"}
     p = {"after": after}
-    
+
     response = requests.get(url, headers=h, params=p, allow_redirects=False)
-    
+
     if response.status_code == 200:
         data = response.json().get("data")
         children = data.get("children")
