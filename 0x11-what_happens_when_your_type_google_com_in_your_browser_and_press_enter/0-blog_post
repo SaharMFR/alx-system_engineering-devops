@@ -1,0 +1,50 @@
+DNS Request
+When you type https://www.google.com and press Enter, the first step is the DNS (Domain Name System) resolution. Your browser needs to convert the human-readable domain name www.google.com into an IP address, which is the actual address of the server on the internet.
+
+Browser Cache: The browser checks its cache to see if it has recently resolved this domain.
+OS Cache: If not found, it queries the operating system’s cache.
+Router Cache: The query might then go to your router’s DNS cache.
+ISP DNS: If still unresolved, the request is sent to your ISP’s DNS server.
+Recursive DNS Servers: If the ISP doesn’t have the answer, it queries other DNS servers, starting from the root DNS servers, moving to the TLD (Top-Level Domain) servers, and finally to the authoritative DNS server for google.com.
+The DNS server responds with the IP address associated with www.google.com.
+
+TCP/IP
+Once the IP address is obtained, your browser initiates a TCP (Transmission Control Protocol) connection to the server. TCP/IP (Internet Protocol) is the suite of communication protocols used to interconnect network devices on the internet.
+
+Three-Way Handshake: The client (your browser) and server perform a three-way handshake to establish a connection. This involves:
+SYN: The client sends a SYN (synchronize) packet to the server.
+SYN-ACK: The server responds with a SYN-ACK (synchronize-acknowledge) packet.
+ACK: The client sends an ACK (acknowledge) packet back to the server, completing the handshake.
+Firewall
+During this process, your request passes through various firewalls. Firewalls are security systems that monitor and control incoming and outgoing network traffic based on predetermined security rules.
+
+Local Firewall: Your computer’s firewall checks if the outgoing request is permitted.
+Network Firewall: Your router or ISP might also have firewalls that inspect the traffic.
+Server-Side Firewall: On reaching Google’s servers, their firewalls ensure that the incoming request is legitimate and not malicious.
+HTTPS/SSL
+The https:// prefix indicates that the connection should be secure. HTTPS (HyperText Transfer Protocol Secure) uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) to encrypt the data exchanged between your browser and the server.
+
+SSL/TLS Handshake: This involves:
+Server Certificate: The server sends its SSL certificate to the browser.
+Certificate Verification: The browser verifies the certificate’s authenticity.
+Session Keys: Both the browser and server generate session keys to encrypt the data during the session.
+Load Balancer
+For high-traffic websites like Google, a load balancer is used to distribute incoming traffic across multiple servers. This ensures no single server is overwhelmed and helps in managing traffic efficiently.
+
+Request Distribution: The load balancer analyzes incoming requests and directs them to the appropriate server based on various algorithms (round-robin, least connections, etc.).
+Web Server
+Once the request reaches the appropriate server, it is handled by a web server. The web server’s job is to process the request and serve the requested web page.
+
+Request Handling: The web server (e.g., Apache, Nginx) interprets the request and passes it to the application server if necessary.
+Application Server
+The application server hosts the web application’s logic. In the case of a search request on Google:
+
+Processing Request: The application server runs the logic to process the search query.
+Interacting with Databases: It may query databases to fetch relevant data.
+Database
+The database stores all the information required by the application. For a search query:
+
+Data Retrieval: The database retrieves search results matching the query criteria.
+Sending Data Back: The data is sent back to the application server, which formats it into a presentable response.
+Response Back to Browser
+Finally, the formatted response (usually in HTML/CSS/JavaScript) is sent back through the same TCP connection to your browser. Your browser renders the content, and you see the search results on the screen.
